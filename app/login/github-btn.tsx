@@ -15,7 +15,7 @@ export default function GithubButton() {
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: `${process.env.URL}/auth/callback`,
+				redirectTo: `https://amityx.vercel.app/auth/callback`,
 			},
 		});
 	};

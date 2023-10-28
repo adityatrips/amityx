@@ -21,7 +21,7 @@ export default function AuthBtnClient({
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: `${process.env.URL}/auth/callback`,
+				redirectTo: `https://amityx.vercel.app/auth/callback`,
 			},
 		});
 	};
@@ -32,8 +32,18 @@ export default function AuthBtnClient({
 	};
 
 	return session ? (
-		<button className='text-xs txt-gray-400' onClick={handleSignOut}>Logout</button>
+		<button
+			className="text-xs txt-gray-400"
+			onClick={handleSignOut}
+		>
+			Logout
+		</button>
 	) : (
-		<button className='text-xs txt-gray-400' onClick={handleSignIn}>Login</button>
+		<button
+			className="text-xs txt-gray-400"
+			onClick={handleSignIn}
+		>
+			Login
+		</button>
 	);
 }
