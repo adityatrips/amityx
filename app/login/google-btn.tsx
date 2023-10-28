@@ -13,7 +13,7 @@ export default function GoogleButton() {
 		await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: `${process.env.URL}/auth/gocallback`,
+				redirectTo: `${process.env.URL}/auth/callback`,
 			},
 		});
 	};

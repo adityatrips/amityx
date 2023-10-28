@@ -15,7 +15,7 @@ export default function GithubButton() {
 		await supabase.auth.signInWithOAuth({
 			provider: 'github',
 			options: {
-				redirectTo: `${process.env.URL}/auth/ghcallback`,
+				redirectTo: `${process.env.URL}/auth/callback`,
 			},
 		});
 	};
