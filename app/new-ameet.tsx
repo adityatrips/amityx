@@ -37,10 +37,11 @@ export default function NewAmeet({ user }: { user: User }) {
 					/>
 				</div>
 				<div className="flex flex-1 justify-between items-center gap-2">
-					<input
+					<textarea
+						autoCorrect="on"
+						spellCheck={true}
 						className="border transition-all duration-200 border-gray-900 outline:none bg-inherit outline-none focus:border w-full py-4 px-2 rounded-lg focus:border-white"
 						placeholder="What is happening!?"
-						type="text"
 						name="title"
 					/>
 					<button
