@@ -1,5 +1,3 @@
-'use non strict';
-
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
@@ -20,5 +18,5 @@ export async function GET(request: NextRequest) {
 		await supabase.auth.exchangeCodeForSession(code);
 	}
 
-	return NextResponse.redirect('https://amityx.vercel.app/auth/callback');
+	return NextResponse.redirect(requestUrl.origin);
 }

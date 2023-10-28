@@ -74,21 +74,21 @@ export interface Database {
       profiles: {
         Row: {
           avatar_url: string
+          email: string
           id: string
           name: string
-          username: string
         }
         Insert: {
           avatar_url: string
+          email: string
           id: string
           name: string
-          username: string
         }
         Update: {
           avatar_url?: string
+          email?: string
           id?: string
           name?: string
-          username?: string
         }
         Relationships: [
           {

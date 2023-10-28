@@ -17,6 +17,7 @@ export default async function Home() {
 	const {
 		data: { session },
 	} = await supabase.auth.getSession();
+
 	const { data } = await supabase
 		.from('ameets')
 		.select('*, author: profiles(*), likes(user_id)')

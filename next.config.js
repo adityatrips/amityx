@@ -6,7 +6,7 @@ const nextConfig = {
 				hostname: 'avatars.githubusercontent.com',
 			},
 			{
-				hostname: 'googleusercontent.com',
+				hostname: '*.googleusercontent.com',
 			},
 		],
 	},

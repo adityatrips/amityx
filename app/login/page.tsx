@@ -18,12 +18,14 @@ export default async function Login() {
 		data: { session },
 	} = await supabase.auth.getSession();
 
-	if (session) redirect('/');
+	if (session) {
+		redirect('/');
+	}
 
 	return (
 		<div className="flex justify-center items-center flex-1">
 			<div className="flex gap-2">
-				<GithubButton />
+				{/* <GithubButton /> */}
 				<GoogleButton />
 			</div>
 		</div>

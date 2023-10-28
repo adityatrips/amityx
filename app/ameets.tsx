@@ -53,7 +53,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					<span className="font-bold">{a.author.name}</span>
 					&nbsp;
 					<span className="text-sm ml-2 text-gray-400">
-						(@{a.author.username})
+						(@{a.author.email.split('@')[0]})
 					</span>
 				</p>
 				<p>{a.title}</p>
