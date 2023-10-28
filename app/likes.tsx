@@ -41,7 +41,7 @@ export default function Likes({ ameet }: { ameet: AmeetWithAuthor }) {
 				strokeWidth="2"
 				strokeLinecap="round"
 				strokeLinejoin="round"
-				className={` group-hover:fill-red-600 group-hover:stroke-red-600 ${
+				className={`transition-all duration-200  group-hover:fill-red-600 group-hover:stroke-red-600 ${
 					ameet.user_has_liked_ameet
 						? 'fill-red-600 stroke-red-600'
 						: 'fill-none stroke-gray-500'

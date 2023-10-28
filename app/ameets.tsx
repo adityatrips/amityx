@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react';
 import moment from 'moment';
+import { Playfair_Display } from 'next/font/google';
+
+const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
 
 export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 	const supabase = createClientComponentClient({
@@ -53,9 +56,11 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					</div>
 					<div className="ml-4 ">
 						<p>
-							<span className="font-bold">{a.author.name}</span>
+							<span className={`${pfd.className} font-black`}>
+								{a.author.name}
+							</span>
 						</p>
-						<p className="flex flex-col">
+						<p className="flex flex-col text-bold">
 							<span className="text-sm text-gray-400">
 								{moment().format('Qo MMMM YYYY, hh:mm a')}
 							</span>

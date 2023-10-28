@@ -5,6 +5,9 @@ import { redirect } from 'next/navigation';
 import NewAmeet from './new-ameet';
 import Ameets from './ameets';
 export const dynamic = 'force-dynamic';
+import { Playfair_Display } from 'next/font/google';
+
+const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
 
 export default async function Home() {
 	const supabase = createServerComponentClient<Database>(
@@ -41,7 +44,9 @@ export default async function Home() {
 		return (
 			<div className="w-full">
 				<div className="h-[10vh] flex flex-1 justify-center items-center flex-col md:flex-row md:justify-between">
-					<h1 className="text-xl font-bold">AmityX</h1>
+					<h1 className={`${pfd.className} text-2xl font-black`}>
+						AmityX
+					</h1>
 					<AuthBtnServer />
 				</div>
 				<NewAmeet user={session.user} />
