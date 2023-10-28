@@ -13,7 +13,7 @@ export default function GoogleButton() {
 		await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: `${location.origin}/auth/callback`,
+				redirectTo: `https://amityx.vercel.app/auth/callback`,
 			},
 		});
 	};
