@@ -15,7 +15,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<div className="bg-gray-900 min-h-screen flex">{children}</div>
+				<div className="min-h-screen max-w-full bg-gray-900">
+					<div className="container mx-auto">{children}</div>
+				</div>
 			</body>
 		</html>
 	);

@@ -24,30 +24,32 @@ export default function NewAmeet({ user }: { user: User }) {
 	return (
 		<form
 			action={addAmeet}
-			className="border border-gray-800"
+			className="border border-white m-2 p-4 rounded-lg"
 		>
-			<div className="flex items-center py-8 px-4">
-				<div className="h-12 w-12">
+			<div className="flex flex-1 flex-col justify-center items-center md:flex-row gap-2">
+				<div className="h-full ">
 					<Image
 						className="rounded-full"
 						src={user.user_metadata.avatar_url}
 						alt="User Avatar"
-						width={48}
-						height={48}
+						width={100}
+						height={100}
 					/>
 				</div>
-				<input
-					className="bg-blue-200 flex-1 bg-inherit ml-2 text-2xl leading-loose px-2"
-					placeholder="What is happening!?"
-					type="text"
-					name="title"
-				/>
-				<button
-					className="flex ml-2 px-4 py-2 border border-white bg-gray-800 items-center justify-center text-white text-xl rounded-xl hover:bg-white hover:text-black hover:border-gray-600"
-					type="submit"
-				>
-					Ameet!
-				</button>
+				<div className="flex flex-1 justify-between items-center gap-2">
+					<input
+						className="bg-inherit outline-none focus:border w-full py-4 px-2 rounded-lg focus:border-white"
+						placeholder="What is happening!?"
+						type="text"
+						name="title"
+					/>
+					<button
+						className="bg-gray-800 text-white rounded-lg py-4 px-2 hover:bg-gray-700"
+						type="submit"
+					>
+						Send!
+					</button>
+				</div>
 			</div>
 		</form>
 	);

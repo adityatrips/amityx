@@ -39,9 +39,9 @@ export default async function Home() {
 		redirect('/login');
 	} else {
 		return (
-			<div className="w-full max-w-xl mx-auto">
-				<div className="flex justify-between px-4 py-6 border-gray-800 border-t-0">
-					<h1 className="text-xl font-bold">Home</h1>
+			<div className="w-full">
+				<div className="h-[10vh] flex flex-1 justify-center items-center flex-col md:flex-row md:justify-between">
+					<h1 className="text-xl font-bold">AmityX</h1>
 					<AuthBtnServer />
 				</div>
 				<NewAmeet user={session.user} />
