@@ -1,8 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import AuthBtnClient from '../auth-btn-client';
 import GithubButton from './github-btn';
+import GoogleButton from './google-btn';
 export const dynamic = 'force-dynamic';
 
 export default async function Login() {
@@ -20,5 +20,12 @@ export default async function Login() {
 
 	if (session) redirect('/');
 
-	return <GithubButton />;
+	return (
+		<div className="flex justify-center items-center flex-1">
+			<div className="flex gap-2">
+				<GithubButton />
+				<GoogleButton />
+			</div>
+		</div>
+	);
 }
