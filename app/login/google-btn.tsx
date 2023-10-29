@@ -13,24 +13,23 @@ export default function GoogleButton() {
 		await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: `https://amityx.vercel.app/auth/callback`,
+				redirectTo: `${process.env.URL}/auth/callback`,
 			},
 		});
 	};
 
 	return (
-		<div className="flex-1 flex justify-center items-center">
-			<button
-				className="hover:bg-gray-800 p-8 rounded-xl"
-				onClick={handleSignIn}
-			>
-				<Image
-					src="/google.png"
-					alt="google sign in"
-					width={100}
-					height={100}
-				/>
-			</button>
-		</div>
+		<button
+			className="w-full hover:bg-gray-800 px-4 py-2 rounded-xl flex items-center justify-center gap-2"
+			onClick={handleSignIn}
+		>
+			<Image
+				src="/google.png"
+				alt="google sign in"
+				width={25}
+				height={25}
+			/>
+			Signup using Google
+		</button>
 	);
 }

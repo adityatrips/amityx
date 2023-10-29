@@ -1,8 +1,12 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import {
+	createServerActionClient,
+	createServerComponentClient,
+} from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import GithubButton from './github-btn';
 import GoogleButton from './google-btn';
+import SignUpButton from './redirect-sign-up-btn';
+
 export const dynamic = 'force-dynamic';
 
 export default async function Login() {
@@ -22,12 +26,63 @@ export default async function Login() {
 		redirect('/');
 	}
 
+	const handleSignIn = async (formData: FormData) => {
+		'use server';
+
+		const supabase = createServerActionClient<Database>(
+			{
+				cookies,
+			},
+			{
+				supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANONKEY,
+				supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+			}
+		);
+
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email: formData.get('email') as string,
+			password: formData.get('password') as string,
+		});
+
+		console.log(data);
+		console.log(error);
+	};
+
 	return (
-		<div className="flex justify-center items-center flex-1">
-			<div className="flex gap-2">
-				{/* <GithubButton /> */}
+		<form
+			action={handleSignIn}
+			className="flex mx-auto justify-center items-center min-w-screen min-h-screen flex-col gap-2 w-[75%]"
+		>
+			<input
+				className="w-full py-2 bg-inherit border-b-2 border-b-[#fff] outline-none transition-all duration-200 hover:border-b-blue-400 focus:border-b-blue-400"
+				placeholder="Enter your name"
+				type="text"
+				name="name"
+			/>
+			<input
+				className="w-full py-2 bg-inherit border-b-2 border-b-[#fff] outline-none transition-all duration-200 hover:border-b-blue-400 focus:border-b-blue-400"
+				placeholder="Enter your email address"
+				type="text"
+				name="email"
+			/>
+			<input
+				className="w-full py-2 bg-inherit border-b-2 border-b-[#fff] outline-none transition-all duration-200 hover:border-b-blue-400 focus:border-b-blue-400"
+				placeholder="Enter your password"
+				type="password"
+				name="password"
+			/>
+			<div className="flex flex-col w-full py-2 justify-center itmes-center gap-2">
+				<div className="flex flex-row items-center justify-between">
+					<button
+						className="hover:bg-gray-800 rounded-xl flex justify-center items-center px-4 py-2 w-full"
+						type="submit"
+					>
+						Login
+					</button>
+					<SignUpButton />
+				</div>
 				<GoogleButton />
 			</div>
-		</div>
+		</form>
 	);
 }

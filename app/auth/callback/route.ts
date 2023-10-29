@@ -18,5 +18,5 @@ export async function GET(request: NextRequest) {
 		await supabase.auth.exchangeCodeForSession(code);
 	}
 
-	return NextResponse.redirect('https://amityx.vercel.app');
+	return NextResponse.redirect(requestUrl.origin);
 }
