@@ -23,7 +23,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 				{
 					event: '*',
 					schema: 'public',
-					table: 'ameets',
+					table: 'ameets, likes',
 				},
 				(payload) => {
 					window.location.reload();
