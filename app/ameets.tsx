@@ -6,6 +6,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react';
 import moment from 'moment';
 import { Playfair_Display, Rubik } from 'next/font/google';
+import { redirect } from 'next/navigation';
 
 const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
 const rubik = Rubik({ weight: ['400', '900'], subsets: ['latin'] });
@@ -26,18 +27,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'ameets',
 				},
 				(payload) => {
-					window.location.reload();
-				}
-			)
-			.on(
-				'postgres_changes',
-				{
-					event: '*',
-					schema: 'public',
-					table: 'likes',
-				},
-				(payload) => {
-					window.location.reload();
+					redirect('/');
 				}
 			)
 			.subscribe();
