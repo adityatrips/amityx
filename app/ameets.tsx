@@ -58,7 +58,9 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 						</p>
 						<p className="flex flex-col text-bold">
 							<span className="text-sm text-gray-400">
-								{moment().format('Qo MMMM YYYY, hh:mm a')}
+								{moment(a.created_at).format(
+									'Qo MMMM YYYY, hh:mm a'
+								)}
 							</span>
 							<span className="text-sm text-gray-400">
 								@{a.author.email.split('@')[0]}
