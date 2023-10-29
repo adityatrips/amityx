@@ -40,7 +40,9 @@ const Navbar = () => {
 	return (
 		<div className="h-[10vh] flex flex-1 justify-center items-center flex-col md:flex-row md:justify-between">
 			<h1
-				onClick={() => useRouter().push('/')}
+				onClick={() => {
+					router.push('/');
+				}}
 				className={`${pfd.className} text-2xl font-black`}
 			>
 				AmityX
