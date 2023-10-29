@@ -18,14 +18,6 @@ export default async function Login() {
 		}
 	);
 
-	const {
-		data: { session },
-	} = await supabase.auth.getSession();
-
-	if (session) {
-		redirect('/');
-	}
-
 	const handleSignIn = async (formData: FormData) => {
 		'use server';
 
@@ -39,14 +31,19 @@ export default async function Login() {
 			}
 		);
 
-		const { data, error } = await supabase.auth.signInWithPassword({
+		await supabase.auth.signInWithPassword({
 			email: formData.get('email') as string,
 			password: formData.get('password') as string,
 		});
-
-		console.log(data);
-		console.log(error);
 	};
+
+	const {
+		data: { session },
+	} = await supabase.auth.getSession();
+
+	if (session) {
+		redirect('/');
+	}
 
 	return (
 		<form

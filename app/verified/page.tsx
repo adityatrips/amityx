@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 const Verified = () => {
 	const [timeLeft, setTimeLeft] = useState(5);
-	const router = useRouter();
 
 	useEffect(() => {
 		if (timeLeft === 0) {
-			router.push('/login');
+			redirect('/login');
 		}
 
 		if (!timeLeft) return;
@@ -20,7 +19,7 @@ const Verified = () => {
 		}, 1000);
 
 		return () => clearInterval(intervalId);
-	}, [timeLeft]);
+	}, [timeLeft, redirect]);
 	return (
 		<div className="flex justify-center items-center flex-col min-h-screen">
 			<h1 className="text-4xl">Email has been verified.</h1>
