@@ -2,21 +2,19 @@
 
 import Likes from './likes';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react';
 import moment from 'moment';
-import { Playfair_Display } from 'next/font/google';
+import { Playfair_Display, Rubik } from 'next/font/google';
 
 const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
+const rubik = Rubik({ weight: ['400', '900'], subsets: ['latin'] });
 
 export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 	const supabase = createClientComponentClient({
 		supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANONKEY,
 		supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
 	});
-	const router = useRouter();
-
 	useEffect(() => {
 		const channel = supabase
 			.channel('realtime ameets')
@@ -28,7 +26,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'ameets',
 				},
 				(payload) => {
-					router.refresh();
+					window.location.reload();
 				}
 			)
 			.subscribe();
@@ -36,7 +34,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 		return () => {
 			supabase.removeChannel(channel);
 		};
-	}, [router, supabase]);
+	}, [supabase]);
 
 	return (
 		<div className="mx-2 grid grid-cols-1 md:grid-cols2 gap-2 pb-2">
@@ -66,7 +64,14 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 								@{a.author.email.split('@')[0]}
 							</span>
 						</p>
-						<p>{a.title}</p>
+						<pre
+							className={rubik.className}
+							style={{
+								whiteSpace: 'pre-wrap',
+							}}
+						>
+							{a.title}
+						</pre>
 
 						<Likes ameet={a} />
 					</div>
