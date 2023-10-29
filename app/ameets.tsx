@@ -31,9 +31,24 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 				}
 			)
 			.subscribe();
+		const channel1 = supabase
+			.channel('realtime ameets')
+			.on(
+				'postgres_changes',
+				{
+					event: '*',
+					schema: 'public',
+					table: 'likes',
+				},
+				(payload) => {
+					redirect('/');
+				}
+			)
+			.subscribe();
 
 		return () => {
 			supabase.removeChannel(channel);
+			supabase.removeChannel(channel1);
 		};
 	}, [supabase]);
 
