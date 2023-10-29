@@ -2,9 +2,36 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Likes({ ameet }: { ameet: AmeetWithAuthor }) {
 	const router = useRouter();
+	const supabase = createClientComponentClient({
+		supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANONKEY,
+		supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+	});
+
+	useEffect(() => {
+		const channel = supabase
+			.channel('realtime likes')
+			.on(
+				'postgres_changes',
+				{
+					event: '*',
+					schema: 'public',
+					table: 'likes',
+				},
+				(payload) => {
+					router.refresh();
+				}
+			)
+			.subscribe();
+
+		return () => {
+			supabase.removeChannel(channel);
+		};
+	}, [supabase]);
+
 	const handleLikes = async function () {
 		const supabase = createClientComponentClient<Database>({
 			supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANONKEY,

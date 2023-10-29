@@ -25,21 +25,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 				{
 					event: '*',
 					schema: 'public',
-					table: 'ameets',
-				},
-				(payload) => {
-					router.refresh();
-				}
-			)
-			.subscribe();
-		const channel1 = supabase
-			.channel('realtime likes')
-			.on(
-				'postgres_changes',
-				{
-					event: '*',
-					schema: 'public',
-					table: 'likes',
+					table: '*',
 				},
 				(payload) => {
 					router.refresh();
@@ -49,7 +35,6 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 
 		return () => {
 			supabase.removeChannel(channel);
-			supabase.removeChannel(channel1);
 		};
 	}, [supabase]);
 
@@ -58,7 +43,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 			{ameets.map((a: AmeetWithAuthor) => (
 				<div
 					key={a.id}
-					className="border-gray-800  border-top-0 px-4 py-8 flex items-center justify-start border rounded-lg"
+					className="border-gray-800 border-top-0 px-4 py-8 flex items-start justify-start border rounded-lg"
 				>
 					<Image
 						className="rounded-full"

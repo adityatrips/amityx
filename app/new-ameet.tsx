@@ -1,6 +1,7 @@
 import { createServerActionClient, User } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
+import TextArea from './TextArea';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +25,7 @@ export default function NewAmeet({ user }: { user: User }) {
 	return (
 		<form
 			action={addAmeet}
-			className="border border-white m-2 p-4 rounded-lg"
+			className="border border-gray-800 m-2 p-4 rounded-lg"
 		>
 			<div className="flex flex-1 flex-col justify-center items-center md:flex-row gap-2">
 				<div className="h-full ">
@@ -36,16 +37,10 @@ export default function NewAmeet({ user }: { user: User }) {
 						height={100}
 					/>
 				</div>
-				<div className="flex flex-1 justify-between items-center gap-2">
-					<textarea
-						autoCorrect="on"
-						spellCheck={true}
-						className="border transition-all duration-200 border-gray-900 outline:none bg-inherit outline-none focus:border w-full py-4 px-2 rounded-lg focus:border-white"
-						placeholder="What is happening!?"
-						name="title"
-					/>
+				<div className="flex w-full flex-col justify-between items-center gap-2">
+					<TextArea />
 					<button
-						className=" transition-all duration-200 bg-gray-800 text-white rounded-lg py-4 px-2 hover:bg-gray-700"
+						className="w-full transition-all duration-200 bg-gray-800 text-white rounded-lg py-4 px-2 hover:bg-gray-700"
 						type="submit"
 					>
 						Send!
