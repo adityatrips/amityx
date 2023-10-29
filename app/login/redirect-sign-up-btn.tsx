@@ -1,13 +1,14 @@
 'use client';
 
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const SignUpButton = () => {
+	const router = useRouter()
 	return (
 		<button
 			onClick={() => {
-				redirect('/signup');
+				router.push('/signup');
 			}}
 			className="w-full hover:bg-gray-800 px-4 py-2 rounded-xl flex itemsc-center justify-center gap-2"
 		>
