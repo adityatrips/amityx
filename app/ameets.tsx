@@ -23,7 +23,18 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 				{
 					event: '*',
 					schema: 'public',
-					table: 'ameets, likes',
+					table: 'ameets',
+				},
+				(payload) => {
+					window.location.reload();
+				}
+			)
+			.on(
+				'postgres_changes',
+				{
+					event: '*',
+					schema: 'public',
+					table: 'likes',
 				},
 				(payload) => {
 					window.location.reload();
