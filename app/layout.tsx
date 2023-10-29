@@ -8,7 +8,8 @@ const rubik = Rubik({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'AmityX - X for Amity',
-	description: 'Developed by Aditya Tripathi',
+	description:
+		'AmityX is X (formerly Twitter) like a platform for Amity University students',
 	creator: 'Aditya Tripathi',
 	applicationName: 'AmityX',
 };
