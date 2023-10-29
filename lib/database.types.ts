@@ -73,19 +73,19 @@ export interface Database {
       }
       profiles: {
         Row: {
-          avatar_url: string
+          avatar_url: string | null
           email: string
           id: string
           name: string
         }
         Insert: {
-          avatar_url: string
+          avatar_url?: string | null
           email: string
           id: string
           name: string
         }
         Update: {
-          avatar_url?: string
+          avatar_url?: string | null
           email?: string
           id?: string
           name?: string

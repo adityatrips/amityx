@@ -47,6 +47,7 @@ export default async function Login() {
 
 	return (
 		<form
+		// @ts-ignore
 			action={handleSignIn}
 			className="flex mx-auto justify-center items-center min-w-screen min-h-screen flex-col gap-2 w-[75%]"
 		>

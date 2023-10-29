@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import './globals.css';
 import { Rubik } from 'next/font/google';
 import { useRouter } from 'next/router';
@@ -6,7 +5,7 @@ import Navbar from './nav';
 
 const rubik = Rubik({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
+export const metadata = {
 	title: 'AmityX - X for Amity',
 	description:
 		'AmityX is X (formerly Twitter) like a platform for Amity University students',

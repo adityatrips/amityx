@@ -19,8 +19,8 @@
 		"react-feather": "^2.0.10"
 	},
 	"devDependencies": {
+		"@types/next": "^9.0.0",
 		"@types/node": "^20",
-		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"autoprefixer": "^10",
 		"encoder": "^0.2.4",

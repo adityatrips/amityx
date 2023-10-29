@@ -6,7 +6,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react';
 import moment from 'moment';
 import { Playfair_Display, Rubik } from 'next/font/google';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
 const rubik = Rubik({ weight: ['400', '900'], subsets: ['latin'] });
@@ -28,7 +28,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'ameets',
 				},
 				(payload) => {
-					router.reload();
+					router.refresh();
 				}
 			)
 			.subscribe();
@@ -42,7 +42,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'likes',
 				},
 				(payload) => {
-					router.reload();
+					router.refresh();
 				}
 			)
 			.subscribe();
@@ -62,7 +62,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 				>
 					<Image
 						className="rounded-full"
-						src={a.author.avatar_url}
+						src={a.author.avatar_url || ''}
 						alt="User Ameet Avatar"
 						width={75}
 						height={75}
