@@ -6,12 +6,13 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react';
 import moment from 'moment';
 import { Playfair_Display, Rubik } from 'next/font/google';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const pfd = Playfair_Display({ weight: ['400', '900'], subsets: ['latin'] });
 const rubik = Rubik({ weight: ['400', '900'], subsets: ['latin'] });
 
 export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
+	const router = useRouter();
 	const supabase = createClientComponentClient({
 		supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANONKEY,
 		supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -27,12 +28,12 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'ameets',
 				},
 				(payload) => {
-					redirect('/');
+					router.reload();
 				}
 			)
 			.subscribe();
 		const channel1 = supabase
-			.channel('realtime ameets')
+			.channel('realtime likes')
 			.on(
 				'postgres_changes',
 				{
@@ -41,7 +42,7 @@ export default function Ameets({ ameets }: { ameets: AmeetWithAuthor[] }) {
 					table: 'likes',
 				},
 				(payload) => {
-					redirect('/');
+					router.reload();
 				}
 			)
 			.subscribe();
